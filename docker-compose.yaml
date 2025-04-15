@@ -12,6 +12,7 @@ services:
       - traefik.http.routers.openwebui.rule=Host(`${DOMAIN_NAME}`)
       - traefik.http.services.openwebui.loadbalancer.server.port=8080
       - traefik.http.routers.openwebui.entrypoints=web
+      - traefik.http.routers.openwebui.entrypoints=web-secure
     extra_hosts:
       - host.docker.internal:host-gateway
     restart: unless-stopped
