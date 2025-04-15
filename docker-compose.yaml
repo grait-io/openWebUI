@@ -14,7 +14,6 @@ services:
       - traefik.http.routers.openwebui.entrypoints=web
     extra_hosts:
       - host.docker.internal:host-gateway
-    runtime: nvidia
     restart: unless-stopped
     networks:
       - coolify  # Correct network name
