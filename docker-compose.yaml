@@ -13,6 +13,8 @@ services:
       - traefik.http.services.openwebui.loadbalancer.server.port=8080
       - traefik.http.routers.openwebui.entrypoints=web
       - traefik.http.routers.openwebui.entrypoints=web-secure
+      - coolify.managed=true  # Required for Coolify integration
+      - coolify.network=coolify
     extra_hosts:
       - host.docker.internal:host-gateway
     restart: unless-stopped
