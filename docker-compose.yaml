@@ -6,10 +6,10 @@ services:
     volumes:
       - openwebui_data:/app/backend/data
     environment:
-      - OLLAMA_BASE_URL=${OLLAMA_URL:-http://host.docker.internal:11434}  # Default or override in Coolify
+      - OLLAMA_BASE_URL=${OLLAMA_URL:-http://host.docker.internal:11434}
     labels:
       - traefik.enable=true
-      - traefik.http.routers.openwebui.rule=Host(`${DOMAIN_NAME}`)  # Coolify will inject this
+      - traefik.http.routers.openwebui.rule=Host(`${DOMAIN_NAME}`)
       - traefik.http.services.openwebui.loadbalancer.server.port=8080
       - traefik.http.routers.openwebui.entrypoints=web
     extra_hosts:
@@ -17,11 +17,11 @@ services:
     runtime: nvidia
     restart: unless-stopped
     networks:
-      - coolify  # Attach to Coolify's proxy network
+      - coolify  # Correct network name
 
 networks:
-  coolify-proxy:
-    external: true  # Uses existing Coolify network
+  coolify:  # Matches Coolify's network
+    external: true
 
 volumes:
   openwebui_data:
