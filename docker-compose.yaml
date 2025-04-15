@@ -7,6 +7,8 @@ services:
       - openwebui_data:/app/backend/data
     environment:
       - OLLAMA_BASE_URL=${OLLAMA_URL:-http://host.docker.internal:11434}
+    ports:
+      - "10101:8080"
     labels:
       - traefik.enable=true
       - traefik.http.routers.openwebui.rule=Host(`ai.gruenstifter.com`)
