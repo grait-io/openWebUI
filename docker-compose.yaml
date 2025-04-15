@@ -1,35 +1,24 @@
-version: '3.9'
 services:
   open-webui:
     image: ghcr.io/open-webui/open-webui:cuda
     container_name: open-webui
-    volumes:
-      - openwebui_data:/app/backend/data
-    environment:
-      - OLLAMA_BASE_URL=${OLLAMA_URL:-http://host.docker.internal:11434}
-    network_mode: host 
+    networks:
+      - coolify
     ports:
       - "10101:8080"
+    environment:
+      - OLLAMA_BASE_URL=${OLLAMA_URL:-http://host.docker.internal:11434}
     labels:
       - traefik.enable=true
       - traefik.http.routers.openwebui.rule=Host(`ai.gruenstifter.com`)
       - traefik.http.services.openwebui.loadbalancer.server.port=8080
-      - traefik.http.routers.openwebui.entrypoints=http
-      - traefik.http.routers.openwebui-secure.entrypoints=https
-      - traefik.http.routers.openwebui-secure.rule=Host(`ai.gruenstifter.com`)
-      - traefik.http.routers.openwebui-secure.tls=true
-      - traefik.http.routers.openwebui.middlewares=https-redirect@file
-      - coolify.managed=true
-      - coolify.network=coolify
-    extra_hosts:
-      - host.docker.internal:host-gateway
     restart: unless-stopped
-    #networks:
-    #  - coolify  # 
+    volumes:
+      - openwebui_data:/app/backend/data
 
-#networks:
-#  coolify:  # Matches Coolify's network
-#    external: true
+networks:
+  coolify:
+    external: true
 
 volumes:
   openwebui_data:
