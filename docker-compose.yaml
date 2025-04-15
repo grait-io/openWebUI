@@ -7,6 +7,7 @@ services:
     ports:
       - "10101:8080"
     environment:
+      - HOST=0.0.0.0
       - OLLAMA_BASE_URL=${OLLAMA_URL:-http://host.docker.internal:11434}
     labels:
       - traefik.enable=true
