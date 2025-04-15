@@ -17,7 +17,7 @@ services:
     runtime: nvidia
     restart: unless-stopped
     networks:
-      - coolify-proxy  # Attach to Coolify's proxy network
+      - coolify  # Attach to Coolify's proxy network
 
 networks:
   coolify-proxy:
