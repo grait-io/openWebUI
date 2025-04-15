@@ -11,7 +11,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.openwebui.rule=Host(`ai.gruenstifter.com`)
       - traefik.http.services.openwebui.loadbalancer.server.port=8080
-      - traefik.http.routers.openwebui.entrypoints=web
+      - traefik.http.routers.openwebui.entrypoints=http
       - traefik.http.routers.openwebui.middlewares=https-redirect@file
       - coolify.managed=true  # Required for Coolify integration
       - coolify.network=coolify
