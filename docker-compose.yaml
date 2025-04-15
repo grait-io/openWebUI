@@ -9,10 +9,9 @@ services:
       - OLLAMA_BASE_URL=${OLLAMA_URL:-http://host.docker.internal:11434}
     labels:
       - traefik.enable=true
-      - traefik.http.routers.openwebui.rule=Host(`${DOMAIN_NAME}`)
+      - traefik.http.routers.openwebui.rule=Host(`ai.gruenstifter.com`)
       - traefik.http.services.openwebui.loadbalancer.server.port=8080
       - traefik.http.routers.openwebui.entrypoints=web
-      - traefik.http.routers.openwebui.entrypoints=web-secure
       - coolify.managed=true  # Required for Coolify integration
       - coolify.network=coolify
     extra_hosts:
